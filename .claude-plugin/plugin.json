@@ -1,0 +1,13 @@
+{
+  "name": "taskboard",
+  "version": "1.0.0",
+  "description": "Per-repo Taskboard MCP plus sprint-ticket skill and fail-open session/commit hooks.",
+  "author": {
+    "name": "atebites-hub",
+    "url": "https://github.com/atebites-hub"
+  },
+  "homepage": "https://github.com/atebites-hub/taskboard",
+  "repository": "https://github.com/atebites-hub/taskboard",
+  "license": "MIT",
+  "keywords": ["taskboard", "kanban", "mcp"]
+}

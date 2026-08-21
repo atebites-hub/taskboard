@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/session-sync.sh\"",
+            "timeout": 10,
+            "statusMessage": "Loading Taskboard snapshot..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/commit-sync.sh\"",
+            "timeout": 15,
+            "statusMessage": "Syncing completed Taskboard tickets..."
+          }
+        ]
+      }
+    ]
+  }
+}

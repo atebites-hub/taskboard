@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "taskboard": {
+      "command": "taskboard",
+      "args": [
+        "--db",
+        "${CLAUDE_PROJECT_DIR}/.taskboard/taskboard.db",
+        "mcp"
+      ]
+    }
+  }
+}

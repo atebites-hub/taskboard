@@ -4,6 +4,8 @@ A local, self-hosted project management tool with a Kanban UI, full CLI, and a b
 
 Single binary. SQLite-backed. No Docker, no external database, no runtime dependencies.
 
+**This is a fork of [tcarac/taskboard](https://github.com/tcarac/taskboard).** Upstream CLI/UI is unchanged. This fork adds a Claude Code plugin (skill + MCP + fail-open hooks) that points every command at a **per-repo** SQLite file (`.taskboard/taskboard.db`). See [PLUGIN.md](PLUGIN.md).
+
 ## Screenshots
 
 ![Kanban Board](screenshots/board.png)

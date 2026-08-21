@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "taskboard",
+  "description": "Taskboard: local SQLite board with CLI, MCP, and agent workflow hooks.",
+  "owner": {
+    "name": "atebites-hub",
+    "url": "https://github.com/atebites-hub"
+  },
+  "plugins": [
+    {
+      "name": "taskboard",
+      "description": "Per-repo Taskboard MCP, sprint-ticket skill, and fail-open session/commit hooks.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}
