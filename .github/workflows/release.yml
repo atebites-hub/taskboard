@@ -65,6 +65,7 @@ jobs:
         with:
           name: taskboard-${{ matrix.suffix }}
           path: taskboard-${{ matrix.suffix }}
+          retention-days: 3
 
   release:
     needs: build
