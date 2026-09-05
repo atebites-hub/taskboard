@@ -42,6 +42,7 @@ These are atebites-only. Do not drop them in an upstream merge without recording
 | --- | --- | --- | --- |
 | Claude Code plugin (marketplace + skill + MCP + fail-open hooks) | Per-repo SQLite at `.taskboard/taskboard.db` instead of the OS config-dir default | Low — new files; Medium if README / plugin layout is touched upstream | `ed227b3` |
 | README fork note | Points consumers at [PLUGIN.md](PLUGIN.md) and this file | Low | `ed227b3` |
+| Artifact retention (3 days) + weekly cleanup | Caps Actions storage for release binaries; weekly Monday UTC job deletes leftovers older than 3 days | Low — `retention-days` on `release.yml` plus new `.github/workflows/cleanup-artifacts.yml` | this fork |
 
 Do not bump [atebites-plugins](https://github.com/atebites-hub/atebites-plugins) `plugins/taskboard/upstream` pins from this repository.
 

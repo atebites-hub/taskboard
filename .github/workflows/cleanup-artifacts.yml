@@ -1,0 +1,44 @@
+name: Cleanup artifacts
+
+on:
+  schedule:
+    # Weekly Monday UTC.
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+jobs:
+  cleanup:
+    if: github.repository == 'atebites-hub/taskboard'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Delete artifacts older than 3 days
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          cutoff="$(date -u -d '3 days ago' +%s)"
+          echo "Deleting artifacts created before $(date -u -d "@${cutoff}" -Iseconds)"
+
+          artifacts_file="$(mktemp)"
+          trap 'rm -f "${artifacts_file}"' EXIT
+          gh api --paginate "repos/${GITHUB_REPOSITORY}/actions/artifacts" \
+            --jq '.artifacts[] | [.id, .created_at, .name] | @tsv' \
+            > "${artifacts_file}"
+
+          deleted=0
+          while IFS=$'\t' read -r id created name; do
+            [ -z "${id}" ] && continue
+            created_epoch="$(date -u -d "${created}" +%s)"
+            if [ "${created_epoch}" -lt "${cutoff}" ]; then
+              echo "Deleting #${id} (${name}, ${created})"
+              gh api -X DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}" >/dev/null
+              deleted=$((deleted + 1))
+            fi
+          done < "${artifacts_file}"
+
+          echo "Deleted ${deleted} artifact(s)"
