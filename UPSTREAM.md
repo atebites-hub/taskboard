@@ -27,7 +27,7 @@ Do not `git push` to `upstream`.
 - **Parent:** [tcarac/taskboard](https://github.com/tcarac/taskboard)
 - **Last synced upstream tip:** <!-- upstream-tip-begin -->`c3db6eba367edce32c9942362f707dd7f91ea689` (`c3db6eb`, `chore: Cleanup and screenshot (#1)`)<!-- upstream-tip-end -->
 
-The weekday sync workflow rewrites only the `upstream-tip-begin/end` span when it opens a clean sync PR.
+Update only the `upstream-tip-begin/end` span when recording a newly synced tip.
 
 ## Owners
 
@@ -79,10 +79,6 @@ git push -u origin HEAD
 # Open PR title: chore: sync upstream
 # Merge with a merge commit.
 ```
-
-Weekday automation: [`.github/workflows/sync-upstream.yml`](.github/workflows/sync-upstream.yml) (UTC cron `41 13 * * 1-5`, plus `workflow_dispatch`). If an open PR already has that exact title, the workflow leaves it alone.
-
-`GITHUB_TOKEN` pull requests do not start other workflows. Set repository secret `UPSTREAM_SYNC_TOKEN` (Factory Plugins bot PAT with `contents` + `pull-requests`) so sync PRs still run CI.
 
 ### After every sync
 
